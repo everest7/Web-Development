@@ -1,0 +1,154 @@
+<html>
+	<head>
+	
+		<title>jQuery</title>
+		
+		
+		
+
+		
+		<script type="text/javascript" src="jquery.min.js"></script>
+		
+		<style type="text/css">
+		
+			body {
+				font-family:helvetica,sans-serif;
+				font-size:150%;
+			}
+			
+			input{
+				padding:5px 5px 5px 5px;
+				border-radius:5px;
+				border:1px solid grey;
+				font-size:23px;
+			}
+			
+			label {
+				position:relative;
+				top:5px;
+				width:200px;
+				float:left;
+			}
+			
+			#wrapper {
+				width:500px;
+				margin:0 auto;
+			}
+			
+			.form-element {
+				margin-bottom:15px;
+			}
+			
+			#submitButton {
+				width:130px;
+				margin-left:200px;
+			}
+			
+			#errorMessage {
+				color:red;
+			}
+			
+			#successMessage {
+				color:green;
+				display:none;
+			}
+		
+		
+		
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<div id="wrapper">
+			
+			<div id="successMessage">Congratulation</div>
+			
+			<div id="errorMessage"></div>
+		
+			<div class="form-element">
+	
+				<label for="email">Email</label>
+				
+				<input type="text" name="email" id="email" placeholder="eg.yourname@gmail.com">
+				
+			</div>
+			
+			<div class="form-element">
+	
+				<label for="Telephone">Telephone</label>
+				
+				<input type="text" name="phone" id="phone" placeholder="eg.132456789">
+				
+			</div>
+			
+			<div class="form-element">
+	
+				<label for="Password">Password</label>
+				
+				<input type="password" name="password" id="password">
+				
+			</div>
+			
+			<div class="form-element">
+	
+				<label for="Password">Confirm Password</label>
+				
+				<input type="password" name="passwordConfirm" id="passwordConfirm">
+				
+			</div>
+			
+			<div class="form-element">
+	
+				<input type="submit" id="submitButton" value="Sign Up">
+				
+			</div>
+	
+		</div>
+		
+		<script type="text/javascript">
+		
+			function validateEmail(email) {
+				var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				 return re.test(email);
+			}
+		
+			$("#submitButton").click(function(){
+			
+				var errorMessage = "";
+				var fieldMissing = "";
+				
+				if(validateEmail($("#email").val())== false){
+					errorMessage += "<p>You email address is not valid</p>";
+				}
+				
+				if($.isNumeric($("#phone").val()) == false) {
+					errorMessage +="<p>Your phone number is not valid</p>";
+				}
+				
+				if($("#password").val() != $("#passwordConfirm").val()){
+					errorMessage += "<p>Your passwords don't match</p>"
+				}
+				
+				if(errorMessage != ""){
+				
+					$("#errorMessage").html(errorMessage);
+					
+				} else {
+				
+					$("#successMessage").show();
+					
+					$("#errorMessage").hide();
+					
+				}
+			
+			});
+		
+			
+		</script>
+		
+
+	</body>
+	
+</html>
